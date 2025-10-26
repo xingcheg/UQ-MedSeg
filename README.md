@@ -44,11 +44,11 @@ pip install -r requirements.txt
 ```bash
 python train_bayesian.py --amp
 ```
-5. **[predicting]:** Download the testing data (put them in `data/imgs_test` and `data/masks_test` folders respectively) and run predict:
+5. **[predicting]:** Download the testing data (put them in `data/imgs_test` and `data/masks_test` folders respectively) and run predict (note that you need to change the `pretrained_model.pth` to the model you saved in the checkpoints):
 ```bash
-python predict.py --input-dir ./data/imgs_test --output-dir ./data/masks_test_pred -m ./checkpoints/checkpoint_epoch20.pth
+python predict.py --input-dir ./data/imgs_test --output-dir ./data/masks_test_pred -m ./pretrained_model.pth
 ```
 6. **[UQ]:** For each testing image (take image `imgs_test/ISIC_0000023.jpg` as an example):
 ```bash
-python predict_bayesian.py -i ./data/imgs_test/ISIC_0000023.jpg -o ./data/test_uq/ISIC_0000023/ISIC_0000023.png --mc 20 --save-prob -m ./checkpoints/checkpoint_epoch20.pth
+python predict_bayesian.py -i ./data/imgs_test/ISIC_0000023.jpg -o ./data/test_uq/ISIC_0000023/ISIC_0000023.png --mc 20 --save-prob -m ./pretrained_model.pth
 ```
