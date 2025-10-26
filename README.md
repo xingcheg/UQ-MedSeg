@@ -17,7 +17,7 @@ The input images and target masks should be in the `data/imgs` and `data/masks` 
 --
 
 ## Pretrained model
-A [pretrained model](https://github.com/xingcheg/UQ-MedSeg/checkpoints/checkpoint_epoch20.pth) is available for the ISIC dataset. 
+A pretrained model(./checkpoints/checkpoint_epoch20.pth) is available for the ISIC dataset. 
 
 
 ## Results
