@@ -14,7 +14,6 @@ The ISIC Lesion segmentation dataset is originally introduced in the [ISIC Chall
 
 The input images and target masks should be in the `data/imgs` and `data/masks` folders respectively (note that the `imgs` and `masks` folder should not contain any sub-folder or any other files, due to the greedy data-loader). You can use your own dataset as long as you make sure it is loaded properly in `utils/data_loading.py`.
 
---
 
 ## Pretrained model
 A pretrained model(./checkpoints/checkpoint_epoch20.pth) is available for the ISIC dataset. 
@@ -29,7 +28,6 @@ For epoch=20, we have
 
 ![Segmentation and UQ results](diagram/result.png)
 
---
 
 ## Quick start
 1. [Install CUDA](https://developer.nvidia.com/cuda-downloads)
