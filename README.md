@@ -46,7 +46,7 @@ python train_bayesian.py --amp
 ```bash
 python predict.py --input-dir ./data/imgs_test --output-dir ./data/masks_test_pred -m ./checkpoints/checkpoint_epoch20.pth
 ```
-6. **[UQ]:** For each testing image:
+6. **[UQ]:** For each testing image (take image `imgs_test/ISIC_0000023.jpg` as an example):
 ```bash
 python predict_bayesian.py -i ./data/imgs_test/ISIC_0000023.jpg -o ./data/test_uq/ISIC_0000023/ISIC_0000023.png --mc 20 --save-prob -m ./checkpoints/checkpoint_epoch20.pth
 ```
