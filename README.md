@@ -28,6 +28,8 @@ For `epoch=20`, we have
 - Mean Dice score on the test set: 0.889
 - Median Dice score on the test set: 0.926
 
+The result might further improve by increase the epoch number. Below please find example results for uncertainty quantification:
+
 ![Segmentation and UQ results](diagram/result.png)
 
 
