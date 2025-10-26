@@ -22,6 +22,8 @@ A pretrained model(./checkpoints/checkpoint_epoch20.pth) is available for the IS
 
 ## Results
 
+For epoch=20, we have
+
 - Mean Dice score on the test set: 0.889
 - Median Dice score on the test set: 0.926
 
