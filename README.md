@@ -14,14 +14,16 @@ The ISIC Lesion segmentation dataset is originally introduced in the [ISIC Chall
 
 The input images and target masks should be in the `data/imgs` and `data/masks` folders respectively (note that the `imgs` and `masks` folder should not contain any sub-folder or any other files, due to the greedy data-loader). You can use your own dataset as long as you make sure it is loaded properly in `utils/data_loading.py`.
 
+## Model
 
-## Pretrained model
+We use a vanilla U-Net architecture. Inputs are resized to 128×128, the number of filters is halved relative to the original U-Net, and `padding=1` is applied to preserve spatial dimensions. A dropout layer (`p=0.2`) is appended to the end of each convolutional layer.
+
 A pretrained model(./checkpoints/checkpoint_epoch20.pth) is available for the ISIC dataset. 
 
 
 ## Results
 
-For epoch=20, we have
+For `epoch=20`, we have
 
 - Mean Dice score on the test set: 0.889
 - Median Dice score on the test set: 0.926
