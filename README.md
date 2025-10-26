@@ -38,15 +38,15 @@ A [pretrained model](https://github.com/xingcheg/UQ-MedSeg/checkpoints/checkpoin
 ```bash
 pip install -r requirements.txt
 ```
-4. **training** Download the training data (put them in `data/imgs` and `data/masks` folders respectively) and run training:
+4. **[training]:** Download the training data (put them in `data/imgs` and `data/masks` folders respectively) and run training:
 ```bash
 python train_bayesian.py --amp
 ```
-5. **predicting** Download the testing data (put them in `data/imgs_test` and `data/masks_test` folders respectively) and run predict:
+5. **[predicting]:** Download the testing data (put them in `data/imgs_test` and `data/masks_test` folders respectively) and run predict:
 ```bash
 python predict.py --input-dir ./data/imgs_test --output-dir ./data/masks_test_pred -m ./checkpoints/checkpoint_epoch20.pth
 ```
-6. **UQ** For each testing image:
+6. **[UQ]:** For each testing image:
 ```bash
 python predict_bayesian.py -i ./data/imgs_test/ISIC_0000023.jpg -o ./data/test_uq/ISIC_0000023/ISIC_0000023.png --mc 20 --save-prob -m ./checkpoints/checkpoint_epoch20.pth
 ```
