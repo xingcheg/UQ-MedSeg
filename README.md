@@ -55,7 +55,7 @@ python predict.py --input-dir ./data/imgs_test --output-dir ./data/masks_test_pr
 python predict_bayesian.py -i ./data/imgs_test/ISIC_0000023.jpg -o ./data/test_uq/ISIC_0000023/ISIC_0000023.png --mc 20 --save-prob -m ./pretrained_model.pth
 ```
 
-There are three methods to compute the pixel-wise probabilities
+7. There are three methods to compute the **pixel-wise probabilities**
 
 (a) Uncalibrated softmax UQ:
 ```bash
