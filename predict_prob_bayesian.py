@@ -30,15 +30,6 @@ def save_png01(arr01: np.ndarray, path: Path):
     Image.fromarray(arr).save(path)
 
 
-def preprocess_to_tensor(full_img: Image.Image, device: torch.device, newW: int, newH: int) -> torch.Tensor:
-    """
-    PIL.Image -> (1, C, newH, newW) float32 tensor on device.
-    """
-    arr = BasicDataset.preprocess(None, full_img, newW, newH, is_mask=False)
-    img_t = torch.from_numpy(arr).unsqueeze(0).to(device=device, dtype=torch.float32)
-    return img_t
-
-
 def forward_logits_resized(
     net: torch.nn.Module,
     img_t: torch.Tensor,
@@ -56,22 +47,12 @@ def forward_logits_resized(
 
 # ------------------------- MC Dropout utilities -------------------------
 
-def enable_mc_dropout(model: nn.Module):
-    """
-    Put the model in eval() mode BUT force dropout layers to train() so they sample.
-    Works for nn.Dropout, nn.Dropout2d, nn.Dropout3d, and custom layers named '*dropout*'.
-    """
-    model.eval()
-    for m in model.modules():
-        # common dropout layers
-        if isinstance(m, (nn.Dropout, nn.Dropout2d, nn.Dropout3d, nn.AlphaDropout)):
-            m.train()
-        # if your model has custom dropout modules, also detect by name:
-        if hasattr(m, 'p') and 'dropout' in m.__class__.__name__.lower():
-            try:
-                m.train()
-            except Exception:
-                pass
+# dropout activation and deactivation
+def enable_mc_dropout(model):
+	""" Function to enable the dropout layers during test-time """
+	for m in model.modules():
+		if m.__class__.__name__.startswith('Dropout'):
+			m.train()
 
 
 # ------------------------- MC Dropout inference -------------------------
@@ -92,9 +73,12 @@ def mc_dropout_average_probability(
     """
     # Prepare input once
     H, W = img.size[1], img.size[0]
-    img_t = preprocess_to_tensor(img, device, newW, newH)
+    img_t = torch.from_numpy(
+        BasicDataset.preprocess(None, img, newW, newH, is_mask=False)
+    ).unsqueeze(0).to(device=device, dtype=torch.float32)  # (1, C, newH, newW)
 
     # Enable MC dropout behavior
+    net.eval()
     enable_mc_dropout(net)
 
     acc = torch.zeros((1, 1 if n_classes == 1 else n_classes, H, W), dtype=torch.float32)
