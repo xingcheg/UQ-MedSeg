@@ -67,7 +67,7 @@ python predict_prob_direct.py --input-dir ./data/imgs_test --output-dir ./data/[
 python predict_prob_bayesian.py --input-dir ./data/imgs_test --output-dir ./data/[folder name to save results] -m ./pretrained_model.pth
 ```
 
-(c) Test time augmentation UQ:
+(c) Test time augmentation (TTA) UQ:
 ```bash
 python predict_prob_tta.py --input-dir ./data/imgs_test --output-dir ./data/[folder name to save results] -m ./pretrained_model.pth
 ```
