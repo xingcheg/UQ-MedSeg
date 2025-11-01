@@ -72,8 +72,6 @@ python predict_prob_bayesian.py --input-dir ./data/imgs_test --output-dir ./data
 python predict_prob_tta.py --input-dir ./data/imgs_test --output-dir ./data/[folder name to save results] -m ./pretrained_model.pth
 ```
 
-
 Some example results can be found below
-
 ![more UQ results](diagram/UQ_compare.png)
 
