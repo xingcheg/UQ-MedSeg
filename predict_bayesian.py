@@ -102,10 +102,11 @@ def predict_img_mc(
     else:
         all_probs = np.zeros((T, H, W), dtype=np.float32)
 
+    net.eval()
+    enable_mc_dropout(net)  # keep only dropout stochastic
     # Run T stochastic forward passes
     for t in range(T):
         with torch.no_grad():
-            enable_mc_dropout(net)  # keep only dropout stochastic
             logits = net(img)  # (1, C, h, w) or (1,1,h,w)
             logits = F.interpolate(
                 logits, (H, W), mode='bilinear', align_corners=False
@@ -288,5 +289,6 @@ if __name__ == '__main__':
 # python predict_bayesian.py -i ./data/imgs_test/ISIC_0000023.jpg -o ./data/test_uq/ISIC_0000023/ISIC_0000023.png --mc 20 --save-prob -m ./checkpoints/checkpoint_epoch20.pth
 # python predict_bayesian.py -i ./data/imgs_test/ISIC_0000056.jpg -o ./data/test_uq/ISIC_0000056/ISIC_0000056.png --mc 20 --save-prob -m ./checkpoints/checkpoint_epoch20.pth
 # python predict_bayesian.py -i ./data/imgs_test/ISIC_0000174.jpg -o ./data/test_uq/ISIC_0000174/ISIC_0000174.png --mc 20 --save-prob -m ./checkpoints/checkpoint_epoch20.pth
-
-
+# python predict_bayesian.py -i ./data/imgs_test/ISIC_0000072.jpg -o ./data/test_uq/ISIC_0000072/ISIC_0000072.png --mc 20 --save-prob -m ./checkpoints/checkpoint_epoch20.pth
+# python predict_bayesian.py -i ./data/imgs_test/ISIC_0000107.jpg -o ./data/test_uq/ISIC_0000107/ISIC_0000107.png --mc 20 --save-prob -m ./checkpoints/checkpoint_epoch20.pth
+# python predict_bayesian.py -i ./data/imgs_test/ISIC_0000319.jpg -o ./data/test_uq/ISIC_0000319/ISIC_0000319.png --mc 20 --save-prob -m ./checkpoints/checkpoint_epoch20.pth
