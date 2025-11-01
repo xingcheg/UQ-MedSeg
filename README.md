@@ -74,5 +74,5 @@ python predict_prob_tta.py --input-dir ./data/imgs_test --output-dir ./data/[fol
 
 Some example results can be found below
 
-![Segmentation and UQ results](diagram/UQ_compare.pdf)
+![more UQ results](diagram/UQ_compare.png)
 
